@@ -37,7 +37,7 @@ CREATE TABLE `projects` (
 CREATE TABLE `skills` (
   `idSkill` int NOT NULL AUTO_INCREMENT,
   `language` enum('Java','C++','C#','JS') NOT NULL,
-  `Level` enum('Junior','Middle',' Senior') NOT NULL,
+  `Level` enum('Junior','Middle','Senior') NOT NULL,
   PRIMARY KEY (`idSkill`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -45,8 +45,8 @@ CREATE TABLE `developers_skills` (
   `idDeveloper` int NOT NULL,
   `idSkill` int NOT NULL,
   PRIMARY KEY (`idDeveloper`,`idSkill`),
-  FOREIGN KEY (`idDeveloper`) REFERENCES developers (`idDeveloper`),
-  FOREIGN KEY (`idSkill`) REFERENCES skills (`idSkill`));
+  FOREIGN KEY (`idDeveloper`) REFERENCES `developers`(`idDeveloper`),
+  FOREIGN KEY (`idSkill`) REFERENCES `skills`(`idSkill`));
 
 CREATE TABLE `developers_projects` (
   `idDeveloper` int NOT NULL,

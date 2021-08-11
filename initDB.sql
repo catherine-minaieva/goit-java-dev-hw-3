@@ -6,38 +6,38 @@ use test;
 
 CREATE TABLE `companies` (
   `id` int NOT NULL,
-  `CompanyName` varchar(45) NOT NULL,
-  `HeadOffice` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `head_office` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `customers` (
   `id` int NOT NULL,
-  `CustomersName` varchar(45) NOT NULL,
-  `TaxCode` varchar(45) NOT NULL,
-  `HeadOffice` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `tax_code` varchar(45) NOT NULL,
+  `head_office` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `developers` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(45) DEFAULT NULL,
-  `Age` int DEFAULT NULL,
-  `Gender` enum('men','women') NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `gender` enum('men','women') NOT NULL,
    PRIMARY KEY (`id`)
   );
 
 CREATE TABLE `projects` (
   `id` int NOT NULL,
-  `ProjectName` varchar(45) NOT NULL,
-  `BaseTechnology` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `base_technology` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `skills` (
   `id` int NOT NULL AUTO_INCREMENT,
   `language` enum('Java','C++','C#','JS') NOT NULL,
-  `Level` enum('Junior','Middle',' Senior') NOT NULL,
+  `level` enum('Junior','Middle','Senior') NOT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -45,15 +45,15 @@ CREATE TABLE `developers_skills` (
   `developer_id` int NOT NULL,
   `skill_id` int NOT NULL,
   PRIMARY KEY (`developer_id`,`skill_id`),
-  FOREIGN KEY (`developer_id`) REFERENCES developers (`id`),
-  FOREIGN KEY (`skill_id`) REFERENCES skills (`id`));
+  FOREIGN KEY (`developer_id`) REFERENCES `developers` (`id`),
+  FOREIGN KEY (`skill_id`) REFERENCES `skills` (`id`));
 
 CREATE TABLE `developers_projects` (
   `developer_id` int NOT NULL,
   `project_id` int NOT NULL,
   PRIMARY KEY (`developer_id`,`project_id`),
-  FOREIGN KEY (`developer_id`) REFERENCES developers (`id`),
-    FOREIGN KEY (`project_id`) REFERENCES projects (`id`));
+  FOREIGN KEY (`developer_id`) REFERENCES `developers` (`id`),
+    FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`));
 
 CREATE TABLE `companies_projects` (
   `company_id` int NOT NULL,

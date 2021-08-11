@@ -1,7 +1,8 @@
 use test;
-select p.ProjectName, sum(d.salary) as totalCost
-from projects p
-inner join developers_projects dp ON p.idProject = dp.idProject
-inner join developers d on d.idDeveloper = dp.idDeveloper
-group by ProjectName
-order by totalCost desc
+select p.name, sum(d.salary) as total_cost
+FROM projects p
+INNER JOIN developers_projects pd ON p.id = pd.project_id
+INNER JOIN developers d ON d.id=pd.developer_id
+GROUP BY p.name
+ORDER BY total_cost DESC
+LIMIT 1;
